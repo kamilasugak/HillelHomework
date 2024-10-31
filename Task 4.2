@@ -1,0 +1,39 @@
+using System;
+using System.Linq;
+
+class Program
+{
+    static void Main()
+    {
+        Console.WriteLine("This is a program that checks the password ");
+        Console.Write("Enter your password: ");
+        string password = Console.ReadLine();
+
+        bool isValid = IsValidpass(password);
+        
+        if (isValid)
+        {
+            Console.WriteLine("Your password is valid");
+        }
+        else
+        {
+            Console.WriteLine("Your password is not valid");
+        }
+        
+        
+        static bool IsValidpass(string password)
+        {
+            if (password.Length < 8)
+            {
+                return false; 
+            }
+
+            bool number = password.Any(char.IsDigit); 
+            
+            string signs = "!?&%@#$";
+            bool SpecialChar = signs.Any(password.Contains);
+            
+            return number && SpecialChar;
+        }
+    }
+}
