@@ -1,0 +1,17 @@
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        Console.WriteLine("This program builds a graph using stars.");
+        Console.WriteLine("Enter the number of graph lines:");
+       
+        int lines = int.Parse(Console.ReadLine());
+
+        for (int i = 1; i <= lines; i++)
+        {
+            Console.WriteLine(new string('*', i));
+        }
+    }
+}
