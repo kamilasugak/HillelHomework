@@ -1,0 +1,27 @@
+class Program
+{
+    static void Main()
+    {
+        Console.WriteLine("This program generates prime numbers.");
+        Console.WriteLine("Enter a number: ");
+        int num = int.Parse(Console.ReadLine());
+
+        for (int i = 2; i <= num; i++)
+        {
+            if (CheckIfPrime(i))
+            {
+                Console.WriteLine(i);
+            }
+        }
+    }
+
+    static bool CheckIfPrime(int number)
+    {
+        for (int i = 2; i < number; i++)
+        {
+            if (number % i == 0) 
+                return false;
+        }
+        return true;
+    }
+}
