@@ -1,0 +1,17 @@
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        Console.WriteLine("This is a program that calculates the salary for the day");
+        Console.WriteLine("Enter the number of hours you work per day:");
+        int num = int.Parse(Console.ReadLine());
+        
+        Console.WriteLine("Enter the amount of the hourly rate:");
+        int amount = int.Parse(Console.ReadLine());
+        
+        int salary = num * amount;
+        Console.WriteLine($"Payment per day: {salary} " );
+    }
+}
