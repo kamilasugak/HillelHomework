@@ -1,0 +1,25 @@
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        Random random = new Random();
+        int[] array = new int[10];
+        
+        for (int i = 0; i < array.Length; i++)
+            array[i] = random.Next(-10, 11);
+        
+        Console.WriteLine("Array elements: " + string.Join(" ", array));
+        
+        int sum = 0;
+        foreach (var num in array)
+            sum += num;
+        
+        Console.WriteLine(sum >= 0 
+            ? "\nThe sum of array elements is non-negative." 
+            : "\nThe sum of array elements is negative.");
+        
+        Console.WriteLine("Sum of elements: " + sum);
+    }
+}
