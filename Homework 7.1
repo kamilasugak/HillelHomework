@@ -1,0 +1,72 @@
+using System;
+
+class Program
+{
+    static char[] cells = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' };
+
+    static void TableCells()
+    {
+        Console.Clear();
+        Console.WriteLine(" {0} | {1} | {2} ", cells[1], cells[2], cells[3]);
+        Console.WriteLine("---|---|---");
+        Console.WriteLine(" {0} | {1} | {2} ", cells[4], cells[5], cells[6]);
+        Console.WriteLine("---|---|---");
+        Console.WriteLine(" {0} | {1} | {2} ", cells[7], cells[8], cells[9]);
+    }
+    
+    static void Main()
+    {
+        int player = 1;
+        int choice;
+        bool game = false;
+        
+        while (!game)
+        {
+            TableCells();
+            Console.WriteLine($"Player {player}, your turn! Enter cell number (1-9): ");
+            choice = int.Parse(Console.ReadLine());
+
+            if (choice >= 1 && choice <= 9 && cells[choice] != 'X' && cells[choice] != 'O')
+            {
+                cells[choice] = (player == 1)
+                    ? 'X'
+                    : 'O';
+
+                if ((cells[1] == cells[2] && cells[2] == cells[3]) ||
+                    (cells[4] == cells[5] && cells[5] == cells[6]) ||
+                    (cells[7] == cells[8] && cells[8] == cells[9]) ||
+                    (cells[1] == cells[4] && cells[4] == cells[7]) ||
+                    (cells[2] == cells[5] && cells[5] == cells[8]) ||
+                    (cells[3] == cells[6] && cells[6] == cells[9]) ||
+                    (cells[1] == cells[5] && cells[5] == cells[9]) ||
+                    (cells[3] == cells[5] && cells[5] == cells[7]))
+                {
+                    TableCells();
+                    Console.WriteLine($"Player {player} has won!");
+                    game = true;
+                }
+                
+                bool draw = true;
+                for (int i = 1; i <= 9; i++)
+                {
+                    if (cells[i] != 'X' && cells[i] != 'O')
+                    {
+                        draw = false;
+                        break;
+                    }
+                }
+
+                
+                if (draw)
+                {
+                    TableCells();
+                    Console.WriteLine("Both winners, i.e. a draw");
+                    game = true;
+                }
+                player = (player == 1) 
+                    ? 2
+                    : 1;
+            }
+        }
+    }
+}
