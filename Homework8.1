@@ -1,0 +1,21 @@
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        Random random = new Random();
+        int[] array = new int[10];
+        
+        for (int i = 0; i < array.Length; i++)
+        {
+            array[i] = random.Next(-10, 11);
+        }
+        
+        Console.WriteLine("Elements with even indices:");
+        for (int i = 0; i < array.Length; i += 2)
+        {
+            Console.Write(array[i] + " ");
+        }
+    }
+}
