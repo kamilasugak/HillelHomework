@@ -1,0 +1,27 @@
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        int[,] table = new int[9, 9];
+        
+        for (int lin = 0; lin < 9; lin++)
+        {
+            for (int col = 0; col < 9; col++)
+            {
+                table[lin, col] = (lin + 1) * (col + 1);
+            }
+        }
+        
+        Console.WriteLine("Multiplication from 1 to 9:");
+        for (int lin = 0; lin < 9; lin++)
+        {
+            for (int col = 0; col < 9; col++)
+            {
+                Console.Write(table[lin, col] + "\t"); 
+            }
+            Console.WriteLine();  
+        }
+    }
+}
