@@ -1,0 +1,44 @@
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        int[,] arr = {
+            { 2, 5, 9 },
+            { 1, 7, 3 },
+            { 10, 8, 20 }
+        };
+        
+        int[] flat = new int[9];
+        
+        int idx = 0;
+        for (int x = 0; x < 3; x++)
+        {
+            for (int y = 0; y < 3; y++)
+            {
+                flat[idx++] = arr[x, y];
+            }
+        }
+        
+        Array.Sort(flat);
+        
+        idx = 0;
+        for (int x = 0; x < 3; x++)
+        {
+            for (int y = 0; y < 3; y++)
+            {
+                arr[x, y] = flat[idx++];
+            }
+        }
+        
+        for (int x = 0; x < 3; x++)
+        {
+            for (int y = 0; y < 3; y++)
+            {
+                Console.Write(arr[x, y] + " ");
+            }
+            Console.WriteLine();
+        }
+    }
+}
