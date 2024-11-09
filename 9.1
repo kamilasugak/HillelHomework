@@ -1,0 +1,17 @@
+using System;
+using System.Linq;
+
+class Program
+{
+    static void Main()
+    {
+        int[] array = {5,3,8,4,2,1,9,7,6};
+        
+        int[] sortedArray = array.Distinct().OrderByDescending(x => x).ToArray();
+
+        if (sortedArray.Length >= 2)
+        {
+            Console.WriteLine("The largest element is number 2: " + sortedArray[1]);
+        }
+    }
+}
