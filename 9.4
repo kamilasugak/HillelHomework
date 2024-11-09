@@ -1,0 +1,47 @@
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        int[,] arr = {
+            { 2, 25, 100 },
+            { 1, 36, 74 },
+            { 56, 32, 11 }
+        };
+        
+        Console.WriteLine("Initial array:");
+        for (int i = 0; i < 3; i++)
+        {
+            for (int j = 0; j < 3; j++)
+            {
+                Console.Write(arr[i, j] + " ");
+            }
+            Console.WriteLine();
+        }
+        
+        Console.WriteLine("Select the diagonal to calculate the sum:");
+        Console.WriteLine("1 - Main diagonal");
+        Console.WriteLine("2 - Side diagonal");
+        int choice = int.Parse(Console.ReadLine());
+        
+        int sum = 0;
+
+        if (choice == 1)
+        {
+            for (int i = 0; i < 3; i++)
+            {
+                sum += arr[i, i];  
+            }
+        }
+        else if (choice == 2)
+        {
+            for (int i = 0; i < 3; i++)
+            {
+                sum += arr[i, 3 - i - 1]; 
+            }
+        }
+        
+        Console.WriteLine("\nSum of elements: " + sum);
+    }
+}
