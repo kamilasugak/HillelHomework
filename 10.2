@@ -1,0 +1,42 @@
+using System.Text;
+
+class Program
+{
+    static void Main()
+    {
+        StringBuilder report = new StringBuilder();
+        
+        report.AppendLine("Report");
+        
+        report.AppendLine("Date: " + DateTime.Now.ToString("dd-MM-yyyy"));
+        
+        report.AppendLine("Events:");
+        
+        byte numberOfEvents;
+        
+        while (true)
+        {
+            Console.Write("Enter the number of events: ");
+            string events = Console.ReadLine();
+
+            if (byte.TryParse(events, out numberOfEvents) && numberOfEvents > 0)
+            {
+                break; 
+            }
+            else
+            {
+                Console.WriteLine("Enter the correct number.");
+            }
+        }
+        
+        for (byte i = 1; i <= numberOfEvents; i++)
+        {
+            Console.Write($"Enter an event #{i}: ");
+            string eventName = Console.ReadLine();
+            
+            report.AppendLine("- " + eventName);
+        }
+        
+        Console.WriteLine("\n" + report.ToString());
+    }
+}
