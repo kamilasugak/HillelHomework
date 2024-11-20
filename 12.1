@@ -1,0 +1,40 @@
+using System;
+
+namespace Fibonacci
+{
+    public static class FibonacciCalculator
+    {
+        public static int GetValue(int position)
+        {
+            if (position == 0)
+                return 0;
+            if (position == 1)
+                return 1;
+
+            return GetValue(position - 1) + GetValue(position - 2);
+        }
+    }
+
+    class Program
+    {
+        static void Main()
+        {
+            while (true)
+            {
+                Console.Write("Enter position number: ");
+                string input = Console.ReadLine();
+
+                if (int.TryParse(input, out int position) && position >= 0)
+                {
+                    int fibNumber = FibonacciCalculator.GetValue(position);
+                    Console.WriteLine($"Fibonacci number for position: {position}: {fibNumber}");
+                    break;
+                }
+                else
+                {
+                    Console.WriteLine("Enter a non-negative integer!");
+                }
+            }
+        }
+    }
+}
