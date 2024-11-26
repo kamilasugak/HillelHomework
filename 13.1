@@ -1,0 +1,130 @@
+class Task
+{
+    static List<string> dataList = new List<string>();
+    static bool continueProcess = true;
+
+    static void Main(string[] args)
+    {
+        while (continueProcess)
+        {
+            Console.Clear();
+            Console.WriteLine("Оберіть дію");
+            Console.WriteLine("1. Додати завдання(справу).");
+            Console.WriteLine("2. Показати всі завдання");
+            Console.WriteLine("3. Завершити запис");
+            Console.WriteLine("4. Видалити справу");
+            Console.WriteLine("5. Вийти");
+            Console.Write("Виберіть опцію: ");
+            
+            string input = Console.ReadLine();
+
+            if (input == "5")
+            {
+                continueProcess = false;
+                Console.WriteLine("Завершення програми. Гарного дня!");
+            }
+            else
+            {
+                HandleChoice(input);
+            }
+        }
+    }
+    
+    static void AddRecord()
+    {
+        Console.Write("Введіть нове завдання: ");
+        string newEntry = Console.ReadLine();
+        
+        if (!string.IsNullOrEmpty(newEntry))
+        {
+            dataList.Add(newEntry);
+            Console.WriteLine("Запис додано.");
+        }
+        else
+        {
+            Console.WriteLine("Запис не може бути порожнім.");
+        }
+        Console.WriteLine("Натисніть будь-яку клавішу, щоб повернутись в меню.");
+        Console.ReadKey();
+    }
+    
+    static void ShowRecords()
+    {
+        if (dataList.Count == 0)
+        {
+            Console.WriteLine("Список порожній.");
+        }
+        else
+        {
+            Console.WriteLine("Записи в списку:");
+            foreach (var entry in dataList)
+            {
+                Console.WriteLine(entry);
+            }
+        }
+        Console.WriteLine("Натисніть будь-яку клавішу для повернення в меню.");
+        Console.ReadKey();
+    }
+    
+    static void MarkAsCompleted()
+    {
+        ShowRecords();
+        if (dataList.Count > 0)
+        {
+            Console.Write("Введіть номер завдання, який вже є зробленим: ");
+            if (int.TryParse(Console.ReadLine(), out int recordNumber) && recordNumber >= 1 && recordNumber <= dataList.Count)
+            {
+                dataList[recordNumber - 1] += " (Завершено)";
+                Console.WriteLine("Завдання позначено як зроблене.");
+            }
+            else
+            {
+                Console.WriteLine("Невірний номер завдання.");
+            }
+        }
+        Console.WriteLine("Натисніть будь-яку клавішу, щоб повернутись в меню.");
+        Console.ReadKey();
+    }
+    
+    static void RemoveRecord()
+    {
+        ShowRecords();
+        if (dataList.Count > 0)
+        {
+            Console.Write("Введіть номер завдання, який хочете видалити: ");
+            if (int.TryParse(Console.ReadLine(), out int recordNumber) && recordNumber >= 1 && recordNumber <= dataList.Count)
+            {
+                dataList.RemoveAt(recordNumber - 1);
+                Console.WriteLine("Завдання  видалено.");
+            }
+            else
+            {
+                Console.WriteLine("Невірний номер завдання.");
+            }
+        }
+        Console.WriteLine("Натисніть будь-яку клавішу, щоб повернутись в меню.");
+        Console.ReadKey();
+    }
+    
+    static void HandleChoice(string input)
+    {
+        switch (input)
+        {
+            case "1":
+                AddRecord();
+                break;
+            case "2":
+                ShowRecords();
+                break;
+            case "3":
+                MarkAsCompleted();
+                break;
+            case "4":
+                RemoveRecord();
+                break;
+            default:
+                Console.WriteLine("Невірний вибір. Спробуйте ще раз.");
+                break;
+        }
+    }
+}
