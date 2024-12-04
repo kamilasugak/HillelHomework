@@ -1,0 +1,30 @@
+using System;
+using System.IO;
+
+class FileCopyUtility
+{
+    static void Main()
+    {
+        try
+        {
+            Console.Write("Вкажіть шлях для збереження копії: ");
+            string outputFilePath = Console.ReadLine();
+
+            Console.Write("Вкажіть шлях до файлу-джерела: ");
+            string inputFilePath = Console.ReadLine();
+
+            if (!File.Exists(inputFilePath))
+            {
+                Console.WriteLine("Файл-джерело не знайдено.");
+                return;
+            }
+
+            File.Copy(inputFilePath, outputFilePath, overwrite: true);
+            Console.WriteLine($"Копіювання завершено. Дані збережено в {outputFilePath}");
+        }
+        catch (Exception error)
+        {
+            Console.WriteLine($"Виникла помилка: {error.Message}");
+        }
+    }
+}
