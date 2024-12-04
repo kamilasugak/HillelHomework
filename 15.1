@@ -1,0 +1,120 @@
+using System;
+using System.Collections.Generic;
+
+abstract class Products
+{
+    public string Title { get; private set; }
+    public decimal Price { get; private set; }
+
+    public Products(string title, decimal price)
+    {
+        Title = title;
+        Price = price;
+    }
+
+    public abstract decimal CalculateTotal();
+}
+
+class Tomato : Products
+{
+    public Tomato(decimal price) : base("Tomato", price) { }
+
+    public override decimal CalculateTotal()
+    {
+        return Price;
+    }
+}
+
+class Cucumber : Products
+{
+    public int Count { get; private set; }
+
+    public Cucumber(decimal price, int count) : base("Cucumber", price)
+    {
+        Count = count;
+    }
+
+    public override decimal CalculateTotal()
+    {
+        return Price * Count;
+    }
+}
+
+class Carrot : Products
+{
+    public Carrot(decimal price) : base("Carrot", price) { }
+
+    public override decimal CalculateTotal()
+    {
+        return Price;
+    }
+}
+
+class Potato : Products
+{
+    public int Count { get; private set; }
+
+    public Potato(decimal price, int count) : base("Potato", price)
+    {
+        Count = count;
+    }
+
+    public override decimal CalculateTotal()
+    {
+        return Price * Count;
+    }
+}
+
+class Market
+{
+    private List<Products> stock = new List<Products>();
+
+    public void AddProducts(IEnumerable<Products> items)
+    {
+        foreach (var product in items)
+        {
+            stock.Add(product);
+        }
+    }
+
+    public void ShowProducts()
+    {
+        decimal totalValue = 0;
+        foreach (var item in stock)
+        {
+            switch (item)
+            {
+                case Potato potato:
+                    Console.WriteLine($"Product: {potato.Title}, Price: {potato.Price}, Count: {potato.Count}, Total price: {potato.CalculateTotal()}");
+                    break;
+                case Cucumber cucumber:
+                    Console.WriteLine($"Product: {cucumber.Title}, Price: {cucumber.Price}, Count: {cucumber.Count}, Total price: {cucumber.CalculateTotal()}");
+                    break;
+                default:
+                    Console.WriteLine($"Product: {item.Title}, Price: {item.CalculateTotal()}");
+                    break;
+            }
+            totalValue += item.CalculateTotal();
+        }
+        Console.WriteLine($"Total products price: {totalValue}");
+    }
+}
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        var items = new List<Products>()
+        {
+            new Carrot(15),
+            new Potato(20, 4),  
+            new Cucumber(14, 2), 
+            new Tomato(12)
+        };
+
+        Market market = new Market();
+        market.AddProducts(items);
+
+        market.ShowProducts();
+    }
+}
